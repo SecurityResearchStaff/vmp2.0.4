@@ -1,0 +1,48 @@
+00405000   > /60            pushad
+00405001   . |BE DBE14300   mov esi,NOTEPAD.0043E1DB
+00405006   . |BF 00514000   mov edi,NOTEPAD.00405100
+0040500B   . |B9 00010000   mov ecx,0x100
+00405010   . |33DB          xor ebx,ebx                              ;  NOTEPAD.004257AE
+00405012   > |8B0433        mov eax,dword ptr ds:[ebx+esi]
+00405015   . |05 6B197FB6   add eax,0xB67F196B
+0040501A   . |89043B        mov dword ptr ds:[ebx+edi],eax
+0040501D   . |83C3 04       add ebx,0x4
+00405020   . |49            dec ecx                                  ;  NOTEPAD.004253CD
+00405021   .^|75 EF         jnz short NOTEPAD.00405012
+00405023   . |61            popad
+00405024     |EB 03         jmp short NOTEPAD.00405029
+00405026     |90            nop
+00405027     |90            nop
+00405028     |90            nop
+00405029     |60            pushad
+0040502A     |BE 00514000   mov esi,NOTEPAD.00405100
+0040502F     |BF 005A4000   mov edi,NOTEPAD.00405A00
+00405034     |B9 00010000   mov ecx,0x100
+00405039     |BA 00000000   mov edx,0x0
+0040503E     |8D1C8D 000000>lea ebx,dword ptr ds:[ecx*4]
+00405045     |8B06          mov eax,dword ptr ds:[esi]
+00405047     |83F8 00       cmp eax,0x0
+0040504A     |74 1A         je short NOTEPAD.00405066
+0040504C     |8907          mov dword ptr ds:[edi],eax
+0040504E     |83C7 04       add edi,0x4
+00405051     |83C2 04       add edx,0x4
+00405054     |3BD3          cmp edx,ebx                              ;  NOTEPAD.004257AE
+00405056     |74 0E         je short NOTEPAD.00405066
+00405058     |3B0432        cmp eax,dword ptr ds:[edx+esi]
+0040505B    ^|75 F4         jnz short NOTEPAD.00405051
+0040505D     |C70432 000000>mov dword ptr ds:[edx+esi],0x0
+00405064    ^|EB EB         jmp short NOTEPAD.00405051
+00405066     |83C6 04       add esi,0x4
+00405069     |49            dec ecx                                  ;  NOTEPAD.004253CD
+0040506A    ^|75 CD         jnz short NOTEPAD.00405039
+0040506C     |61            popad
+0040506D    -|E9 8E900300   jmp NOTEPAD.0043E100
+
+60 BE DB E1 43 00 BF 00 51 40 00 B9 00 01 00 00 33 DB 8B 04 33 05 6B 19 7F B6 89 04 3B 83 C3 04
+49 75 EF 61 EB 03 90 90 90 60 BE 00 51 40 00 BF 00 5A 40 00 B9 00 01 00 00 BA 00 00 00 00 8D 1C
+8D 00 00 00 00 8B 06 83 F8 00 74 1A 89 07 83 C7 04 83 C2 04 3B D3 74 0E 3B 04 32 75 F4 C7 04 32
+00 00 00 00 EB EB 83 C6 04 49 75 CD 61 E9 8E 90 03 00
+
+
+
+ 

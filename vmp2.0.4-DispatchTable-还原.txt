@@ -1,0 +1,20 @@
+00405000    60              pushad
+00405001    BE DBE14300     mov esi,NOTEPAD.0043E1DB
+00405006    BF 00514000     mov edi,NOTEPAD.00405100
+0040500B    B9 00010000     mov ecx,0x100
+00405010    33DB            xor ebx,ebx                              ; NOTEPAD.004257AE
+00405012    8B0433          mov eax,dword ptr ds:[ebx+esi]
+00405015    05 6B197FB6     add eax,0xB67F196B
+0040501A    89043B          mov dword ptr ds:[ebx+edi],eax
+0040501D    83C3 04         add ebx,0x4
+00405020    49              dec ecx                                  ; NOTEPAD.004253CD
+00405021  ^ 75 EF           jnz short NOTEPAD.00405012
+00405023    61              popad
+00405024  - E9 D7900300     jmp NOTEPAD.0043E100
+
+60 BE DB E1 43 00 BF 00 51 40 00 B9 00 01 00 00 33 DB 8B 04 33 05 6B 19 7F B6 89 04 3B 83 C3 04
+49 75 EF 61 E9 D7 90 03 00
+
+
+
+ 
